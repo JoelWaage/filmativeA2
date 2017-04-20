@@ -9,18 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var HomeComponent = (function () {
-    function HomeComponent() {
-        this.title = 'Filmative';
+var posts_service_1 = require("../services/posts.service");
+var FilmsComponent = (function () {
+    function FilmsComponent(postsService) {
+        var _this = this;
+        this.postsService = postsService;
+        this.postsService.getPosts().subscribe(function (posts) {
+            _this.posts = posts;
+        });
     }
-    return HomeComponent;
+    return FilmsComponent;
 }());
-HomeComponent = __decorate([
+FilmsComponent = __decorate([
     core_1.Component({
-        selector: 'home',
-        templateUrl: './home.component.html'
+        moduleId: module.id,
+        selector: 'films',
+        templateUrl: 'films.component.html',
+        providers: [posts_service_1.PostsService]
     }),
-    __metadata("design:paramtypes", [])
-], HomeComponent);
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+    __metadata("design:paramtypes", [posts_service_1.PostsService])
+], FilmsComponent);
+exports.FilmsComponent = FilmsComponent;
+//# sourceMappingURL=films.component.js.map

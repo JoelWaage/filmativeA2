@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'home-page',
-  template: `
-    <div class="container">
-      <h1>{{title}}</h1>
-      <img class= "img-responsive"src="./assets/grey.jpg" />
-    </div>
-  `,
+  selector: 'home',
+  templateUrl: './home.component.html'
 })
 export class HomeComponent  {
-  title = "Filmative";
+  title: string;
+
+  constructor(){
+    this.title = 'Filmative';
+  }
 }

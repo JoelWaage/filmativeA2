@@ -9,18 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var HomeComponent = (function () {
-    function HomeComponent() {
-        this.title = 'Filmative';
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+var PostsService = (function () {
+    function PostsService(http) {
+        this.http = http;
+        console.log("Testing it out");
     }
-    return HomeComponent;
+    PostsService.prototype.getPosts = function () {
+        return this.http.get('http://www.omdbapi.com/?t=mad+max%3A+fury+road')
+            .map(function (res) { return res.json(); });
+    };
+    return PostsService;
 }());
-HomeComponent = __decorate([
-    core_1.Component({
-        selector: 'home',
-        templateUrl: './home.component.html'
-    }),
-    __metadata("design:paramtypes", [])
-], HomeComponent);
-exports.HomeComponent = HomeComponent;
-//# sourceMappingURL=home.component.js.map
+PostsService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], PostsService);
+exports.PostsService = PostsService;
+//# sourceMappingURL=posts.service.js.map
